@@ -48,7 +48,19 @@ app.get('/api/persons', (request, response) => {
 app.post('/api/persons', (request, response) => {
     console.log('Data posted to server')
     const body = request.body
-
+    if(!body) {
+        return response.status(400).json({error: 'request body missing'})
+    }
+    console.log(JSON.stringify(body))
+    if (body.name === undefined) {
+      return response.status(400).json({error: 'name is missing'})
+    }
+    if (body.number === undefined) {
+        return response.status(400).json({error: 'number is missing'})
+    }
+    if(persons.find(person => person.name === body.name)) {
+        return response.status(400).json({error: 'name must be unique'})
+    }
     const person = {
       name: body.name,
       number: body.number,
