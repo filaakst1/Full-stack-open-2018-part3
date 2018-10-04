@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/filaakst1/Full-stack-open-2018-part3/issues"
   },
-  "homepage": "https://github.com/filaakst1/Full-stack-open-2018-part3#readme"
+  "homepage": "https://github.com/filaakst1/Full-stack-open-2018-part3#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
