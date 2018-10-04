@@ -30,6 +30,11 @@ let persons = [
 app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
+app.get('/info', (request, response) => {
+    const timestamp =new Date().toString()
+    response.send(`<div><p>puhelinluettelossa ${persons.length} henkilön tiedot</p><p>${timestamp}</p></div>`)
+})
+
     
 const PORT = 3001
 app.listen(PORT, () => {
