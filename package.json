@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "watch": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +20,8 @@
   "homepage": "https://github.com/filaakst1/Full-stack-open-2018-part3#readme",
   "dependencies": {
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   }
 }

@@ -1,32 +1,41 @@
-const http = require('http')
 
-let notes = [
+const express = require('express')
+const app = express()
+
+let persons = [
     {
-      id: 1,
-      content: 'HTML on helppoa',
-      date: '2017-12-10T17:30:31.098Z',
-      important: true
+        name: 'Arto Hellas',
+        number: '040-123456',
+        id: 1
     },
     {
-      id: 2,
-      content: 'Selain pystyy suorittamaan vain javascriptiä',
-      date: '2017-12-10T18:39:34.091Z',
-      important: false
+        name: 'Martti Tienari',
+        number: '040-123456',
+        id: 2
     },
     {
-      id: 3,
-      content: 'HTTP-protokollan tärkeimmät metodit ovat GET ja POST',
-      date: '2017-12-10T19:20:14.298Z',
-      important: true
+        name: 'Arto Järvinen',
+        number: '040-123456',
+        id: 3
+    },
+    {
+        name: 'Lea Kutvonen',
+        number: '040-123456',
+        id: 4
     }
+    
+    
   ]
 
-
-const app = http.createServer((req, response) => {
-    response.writeHead(200, { 'Content-Type': 'application/json' })
-    response.end(JSON.stringify(notes))
+app.get('/', (req, res) => {
+    res.send('<h1>Hello World!</h1>')
 })
   
-const port = 3001
-app.listen(port)
-console.log(`Server running on port ${port}`)
+app.get('/persons', (req, res) => {
+    res.json(persons)
+})
+  
+const PORT = 3001
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+})
