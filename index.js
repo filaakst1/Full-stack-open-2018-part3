@@ -30,6 +30,22 @@ let persons = [
 app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
+app.get('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    console.log(`requested person with id=${id}`)
+    const person = persons.find(person => person.id === id)
+    if(person) {
+        console.log(`found ${person}`)
+        response.json(person)
+    }else {
+        console.log(`person ${id} not found`)
+        response.status(404).end()
+    }
+    
+    
+    
+})
+
 app.get('/info', (request, response) => {
     const timestamp =new Date().toString()
     response.send(`<div><p>puhelinluettelossa ${persons.length} henkilön tiedot</p><p>${timestamp}</p></div>`)
