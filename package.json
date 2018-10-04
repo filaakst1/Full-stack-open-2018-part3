@@ -1,0 +1,20 @@
+{
+  "name": "full-stack-open-2018-part3",
+  "version": "1.0.0",
+  "description": "Exercises of part 3",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filaakst1/Full-stack-open-2018-part3.git"
+  },
+  "author": "Tomi Laakso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/filaakst1/Full-stack-open-2018-part3/issues"
+  },
+  "homepage": "https://github.com/filaakst1/Full-stack-open-2018-part3#readme"
+}
