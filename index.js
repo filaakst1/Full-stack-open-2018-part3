@@ -45,7 +45,14 @@ app.get('/api/persons/:id', (request, response) => {
     
     
 })
-
+app.delete('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    console.log(`delete requested for person with id=${id}`)
+    persons = persons.filter(person => person.id !== id)
+  
+    response.status(204).end()
+  })
+  
 app.get('/info', (request, response) => {
     const timestamp =new Date().toString()
     response.send(`<div><p>puhelinluettelossa ${persons.length} henkilön tiedot</p><p>${timestamp}</p></div>`)
