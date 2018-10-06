@@ -4,6 +4,9 @@ const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 
+// Enable logging for requests
+app.use(morgan('tiny'))
+
 app.use(bodyParser.json())
 
 let persons = [
