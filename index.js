@@ -5,10 +5,10 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 
 
-//morgan.token('type', function (req, res) { return req.headers['content-type'] })
+morgan.token('content', function (req, res) { return JSON.stringify(req.body) })
 
 // Enable logging for requests
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+app.use(morgan(':method :url :content :status :res[content-length] - :response-time ms'))
 
 app.use(bodyParser.json())
 
