@@ -19,25 +19,12 @@ app.use(morgan(':method :url :content :status :res[content-length] - :response-t
 app.use(cors())
 app.use(bodyParser.json())
 
-/**
- * Formats request responses 
- * @param {*} person 
- */
-const formatNote = (person) => {
-    return {
-      name: person.name,
-      number: person.number,
-      id: person.id
-     
-    }
-  }
-
- // Get request that return all persons 
+// Get request that return all persons 
 app.get('/api/persons', (request, response) => {
     console.log('requested all data')
     Person.find({})
         .then(people=> {
-            response.json(people.map(formatNote))
+            response.json(people.map(Person.format))
         })
 })
 // Post request for new users
@@ -64,7 +51,7 @@ app.post('/api/persons', (request, response) => {
                     number: body.number
                 })
                 person.save().then(result => {
-                    response.json(formatNote(result))
+                    response.json(Person.format(result))
                 })
             }
         }).catch(exc=>{
@@ -79,7 +66,7 @@ app.get('/api/persons/:id', (request, response) => {
         .then(person => {
             if(person) {
                 console.log(`found ${person}`)
-                response.json(formatNote(person))
+                response.json(Person.format(person))
             }else {
                 console.log(`person ${id} not found`)
                 response.status(404).end()
