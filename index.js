@@ -25,6 +25,9 @@ app.get('/api/persons', (request, response) => {
     Person.find({})
         .then(people=> {
             response.json(people.map(Person.format))
+        }).catch(exc=>{
+            console.error(exc)
+            response.status(400).json({error: exc})
         })
 })
 // Post request for new users
@@ -98,7 +101,11 @@ app.get('/info', (request, response) => {
     })
 })
 
-    
+const error = (request, response) => {
+    response.status(404).send({ error: 'unknown endpoint' })
+}
+app.use(error)
+
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
