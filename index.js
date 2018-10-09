@@ -10,7 +10,6 @@ const Person = require('./models/person')
 app.use(express.static('build'))
 
 
-
 morgan.token('content', function (req, res) { return JSON.stringify(req.body) })
 
 // Enable logging for requests
