@@ -29,6 +29,34 @@ app.get('/api/persons', (request, response) => {
             response.status(400).json({error: exc})
         })
 })
+// Put request for update 
+app.put('/api/persons/:id', (request, response) => {
+    
+    console.log('Put request posted to server')
+    const body = request.body
+    if(!body) {
+        return response.status(400).json({error: 'request body missing'})
+    }
+    const person = {
+        name: body.name,
+        number: body.number
+    }
+    if (body.name === undefined) {
+        return response.status(400).json({error: 'name is missing'})
+    }
+    if (body.number === undefined) {
+        return response.status(400).json({error: 'number is missing'})
+    }
+    Person.findByIdAndUpdate(request.params.id, person, { new: true } )
+        .then(updatedPerson => {
+            response.json(Person.format(updatedPerson))
+        })
+        .catch(error => {
+            console.error(error)
+            response.status(400).send({ error: 'malformatted id' })
+        })
+})
+
 // Post request for new users
 app.post('/api/persons', (request, response) => {
     console.log('Data posted to server')
