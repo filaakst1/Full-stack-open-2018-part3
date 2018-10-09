@@ -121,11 +121,13 @@ app.delete('/api/persons/:id', (request, response) => {
   })
  // Request for database info 
 app.get('/info', (request, response) => {
-    const timestamp =new Date().toString()
-    Person.find({})
-    .then(people=> {
-        response.send(`<div><p>puhelinluettelossa ${people.length} henkilön tiedot</p><p>${timestamp}</p></div>`)
-    })
+    Person.count({})
+        .then(value=> {
+            const timestamp =new Date().toString()
+            console.log(`Database size is ${value}`)
+            response.send(`<div><p>puhelinluettelossa ${value} henkilön tiedot</p><p>${timestamp}</p></div>`)
+          
+        })
 })
 
 const error = (request, response) => {
