@@ -2,9 +2,7 @@ const mongoose = require('mongoose')
 
 
 // use environment variables to pass user credentials
-const MONGO_DB_USER= process.env.MONGO_DB_USER
-const MONGO_DB_PASSWORD=process.env.MONGO_DB_PASSWORD
-const url = `mongodb://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@ds125273.mlab.com:25273/fso2018`
+const url = process.env.MONGO_DB_URI
 // Connect to mongodb
 mongoose.connect(url, { useNewUrlParser: true })
 // Schema for persons
