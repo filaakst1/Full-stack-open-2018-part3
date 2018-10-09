@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 
+if ( process.env.NODE_ENV !== 'production' ) {
+  require('dotenv').config()
+}
+
+
 // use environment variables to pass user credentials
 const url = process.env.MONGO_DB_URI
 // Connect to mongodb
