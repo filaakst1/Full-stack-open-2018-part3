@@ -64,7 +64,6 @@ app.post('/api/persons', (request, response) => {
     if(!body) {
         return response.status(400).json({error: 'request body missing'})
     }
-    console.log(JSON.stringify(body))
     if (body.name === undefined) {
       return response.status(400).json({error: 'name is missing'})
     }
