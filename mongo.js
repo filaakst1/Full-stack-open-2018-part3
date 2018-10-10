@@ -13,7 +13,7 @@ const personSchema = mongoose.Schema( {
   number: String
 })
 // Model for persons
-const Person = mongoose.model('Person', personSchema);
+const Person = mongoose.model('Person', personSchema)
 
 // proper amount of arguments given
 if(process.argv.length === 4) {
@@ -21,18 +21,18 @@ if(process.argv.length === 4) {
     name: process.argv[2],
     number: process.argv[3]
   })
-  
+
   person.save()
     .then(result => {
       console.log(`lisätään henkilö ${result.name} numero ${result.number} luetteloon`)
       mongoose.connection.close()
-  })
+    })
 
-}else if(process.argv.length == 2 ) {
-  // No arguments 
+}else if(process.argv.length === 2 ) {
+  // No arguments
   Person
     .find({})
-    .then(result=> {
+    .then(result => {
       console.log('puhelinluettelo:')
       result.forEach(person => {
         console.log(`${person.name} ${person.number}`)
@@ -41,6 +41,6 @@ if(process.argv.length === 4) {
     })
 }else {
   // Error. Operation not specified. Printing usage
-    console.error("Invalid amount of arguments.Usage:\nnode mongo.js NAME NUMBER\tAdds number\nnode mongo.js\t\t\tLists data")
-    mongoose.connection.close()
+  console.error('Invalid amount of arguments.Usage:\nnode mongo.js NAME NUMBER\tAdds number\nnode mongo.js\t\t\tLists data')
+  mongoose.connection.close()
 }
